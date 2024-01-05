@@ -23,7 +23,21 @@ BC create_empty_base(){
  * @return the modified base
  */
 BC add_rule_to_tail(BC base, Regle rule){
-//Test
+    if (base != NULL){
+        BC newb = malloc(sizeof(BC));
+        newb->next = NULL;
+        newb->rule = rule;
+        if (base->next != NULL){
+            BC temp = base->next;
+            while (temp->next != NULL){
+                temp = temp->next;
+            }
+            temp->next = newb;
+        } else {
+            base->next = newb;
+        }
+    }
+    return base;
 }
 
 

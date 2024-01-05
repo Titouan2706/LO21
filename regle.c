@@ -1,3 +1,4 @@
+// TOUTES LES FONCTIONS ONT ETE TESTEE ET FONCTIONNENT
 
 #include "regle.h"
 #include <stdlib.h>
@@ -16,6 +17,7 @@ Regle create_empty_rule() {
     return newr;
 }
 
+
 /**
  * Function add a condition to the premise of a rule
  * @param r a rule to which the premise will be added
@@ -24,8 +26,8 @@ Regle create_empty_rule() {
 Regle add_condition(Regle r){
     if (r!=NULL) {
         char prop;
-        printf("Entrer une proposition à ajouter");
-        scanf("%c", &prop);
+        printf("Entrer une proposition a ajouter");
+        gets(&prop);
         premisse *newp = malloc(sizeof(premisse));
         newp->next = NULL;
         newp->prop = prop;
@@ -50,12 +52,12 @@ Regle add_condition(Regle r){
  */
 Regle create_conclusion(Regle r){
     if(r!=NULL) {
-        char conclu;
         printf("Entrer la conclusion a ajouter");
         scanf("%c", &r->conclusion);
     }
     return r;
 }
+
 
 /**
  * Function check if a given proposition belongs to a rule
@@ -74,7 +76,6 @@ bool prop_belong_to_rule(char prop, premisse *p){
 
     return prop_belong_to_rule(prop, p->next); // Rappel de la fonction en passant à la prémisse suivante
 }
-
 
 
 /**
@@ -102,7 +103,6 @@ Regle clear_premise_prop(char prop, Regle r){
     }
     return r; // Retourne la liste modifié
 }
-
 
 
 /**
