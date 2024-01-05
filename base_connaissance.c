@@ -23,7 +23,7 @@ BC create_empty_base(){
  * @return the modified base
  */
 BC add_rule_to_tail(BC base, Regle rule){
-
+//Test
 }
 
 
