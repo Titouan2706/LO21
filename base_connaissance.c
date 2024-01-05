@@ -2,6 +2,7 @@
 #include "base_connaissance.h"
 #include <malloc.h>
 
+
 /**
  * Function creates an empty knowledge base
  * @return a base
