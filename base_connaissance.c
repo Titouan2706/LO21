@@ -33,5 +33,5 @@ BC add_rule_to_tail(BC base, Regle rule){
  * @return the first rule of the base
  */
 Regle access_to_head_base(BC base){
-
+    return base->rule;
 }
