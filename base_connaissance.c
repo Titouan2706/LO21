@@ -15,7 +15,6 @@ BC create_empty_base(){
     }
 }
 
-
 /**
  * Function add a rule to the tail of a base
  * @param base the base in which to add the rule

@@ -17,6 +17,7 @@ typedef struct rule{
 
 typedef rule* Regle;
 
+
 Regle create_empty_rule();
 Regle add_condition(Regle r);
 Regle create_conclusion(Regle r);

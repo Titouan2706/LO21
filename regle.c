@@ -42,6 +42,7 @@ Regle add_condition(Regle r){
     return r;
 }
 
+
 /**
  * Function create the conclusion of a rule
  * @param r the rule to which the conclusion will be added
