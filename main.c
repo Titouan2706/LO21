@@ -21,6 +21,7 @@ int main(){
         // COPY / PASTE the "Rules and Knowledge base" lines here to have pre-written rules
 
 
+
     // Utilisation du menu
     do {
         printf("\n------ Menu ------\n"); // Affichage du menu
