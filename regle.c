@@ -27,7 +27,7 @@ Regle add_condition(Regle r){
     if (r!=NULL) {
         char prop;
         printf("Entrer une proposition a ajouter");
-        gets(&prop);
+        scanf(" %c", &prop);
         premisse *newp = malloc(sizeof(premisse));
         newp->next = NULL;
         newp->prop = prop;
@@ -53,28 +53,32 @@ Regle add_condition(Regle r){
 Regle create_conclusion(Regle r){
     if(r!=NULL) {
         printf("Entrer la conclusion a ajouter");
-        scanf("%c", &r->conclusion);
+        scanf(" %c", &r->conclusion);
     }
     return r;
 }
 
 
-/**
- * Function check if a given proposition belongs to a rule
- * @param prop a proposition
- * @param p a premise of a certain rule
- * @return true if prop belongs to the rule, false if not
- */
-bool prop_belong_to_rule(char prop, premisse *p){
-    if (p == NULL) { // Si la prémisse est nulle, donc la proposition n'appartient pas à la règle
-        return false; // Proposition n'appartient pas à la prémisse
+ /**
+  * Function check if a given proposition belongs to a rule
+  * @param prop the proposition to check
+  * @param r a rule
+  * @return true if prop belongs to the rule, false if not
+  */
+bool prop_belong_to_rule(char prop, Regle r){
+    if (r == NULL) { // Verifie si la règle est vide
+        return false; // Regle vide donc prop n'appartient pas à r
+    }
+    premisse *condition = r->condition; // Variable pour parcourir les conditions de la règle
+
+    while (condition != NULL) { // Tant qu'il reste des propositions
+        if (condition->prop == prop) { // La proposition recherchée correspond à l'une des proposition de la règle
+            return true;
+        }
+        condition = condition->next; // Incrémentation pour le parcours de la règle
     }
 
-    if (p->prop == prop) { // Vérifie si la proposition appartient à la prémisse testée
-        return true; // Proposition appartient à la prémisse
-    }
-
-    return prop_belong_to_rule(prop, p->next); // Rappel de la fonction en passant à la prémisse suivante
+    return false; // Atteind la fin de la règle sans trouver le proposition
 }
 
 

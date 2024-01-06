@@ -21,7 +21,7 @@ typedef rule* Regle;
 Regle create_empty_rule();
 Regle add_condition(Regle r);
 Regle create_conclusion(Regle r);
-bool prop_belong_to_rule(char prop, premisse *p);
+bool prop_belong_to_rule(char prop, Regle r);
 Regle clear_premise_prop(char prop, Regle r);
 bool is_premise_empty(Regle r);
 char access_heap_prop(Regle r);
