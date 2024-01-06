@@ -160,11 +160,12 @@ Regle clear_premise_prop(char prop, Regle r){
  * @return true if premise is empty, false if not
  */
 bool is_premise_empty(Regle r){
-
-    if(r->condition == NULL){ // Si la regle est vide (premisse)
+    printf("Entree dans teste premisse vide\n");
+    if(r->condition->prop == '\0' && r->condition->next == NULL){ // Si la regle est vide (premisse)
+        printf("Retourne vrai\n");
         return true;
     }
-
+    printf("Retourne faux\n");
     return false; // Si la regle n'est pas vide
 
 }

@@ -117,7 +117,10 @@ void print_fact_base(BF base_fait){
 
     }
 
-    printf("Base de fait vide\n");
+    if(base_fait == NULL){ // Si la base de fait est nulle
+        printf("Base de fait vide\n");
+
+    }
 
 }
 

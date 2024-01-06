@@ -19,7 +19,16 @@ int main(){
 
     // Declaration des regles et de la base de connaissance
         // COPY / PASTE the "Rules and Knowledge base" lines here to have pre-written rules
-
+        Regle R = create_empty_rule();
+        R = add_condition(R);
+        R = add_condition(R);
+        R = create_conclusion(R);
+        Regle Z = create_empty_rule();
+        Z = add_condition(Z);
+        Z = add_condition(Z);
+        Z = create_conclusion(Z);
+        base_connaissance = add_rule_to_tail(base_connaissance, R);
+        base_connaissance = add_rule_to_tail(base_connaissance, Z);
 
 
     // Utilisation du menu
@@ -38,7 +47,7 @@ int main(){
                 {
                     char fact;
                     printf("Quel fait voulez-vous ajouter : ");
-                    fact = getchar();
+                    scanf(" %c", &fact);
                     base_faits = add_fact_to_tail(base_faits, fact);
                     printf("\nFait ajoute\n");
                 }
