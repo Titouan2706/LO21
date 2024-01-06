@@ -37,7 +37,7 @@ BC add_rule_to_tail(BC base, Regle rule){
     new_b->next = NULL; // Ajout en queue
     new_b->rule = rule; // Regle a ajouter
 
-    if (base == NULL) { // Si base vide, retourner directement le nouvel element
+    if (base == NULL || base->rule == NULL) { // Si base vide, retourner directement le nouvel element
         return new_b;
     }
 

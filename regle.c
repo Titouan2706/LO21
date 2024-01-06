@@ -24,14 +24,12 @@ Regle create_empty_rule() {
 /**
  * Function add a condition to the premise of a rule
  * @param r a rule to which the premise will be added
+ * @param prop the proposition to add
  * @return the rule with the new premise
  */
-Regle add_condition(Regle r){
+Regle add_condition(Regle r, char prop){
 
     if (r!=NULL) { // Si regle non vide
-        char prop;
-        printf("Entrer une proposition a ajouter :");
-        scanf(" %c", &prop); // Acquisition de la proposition
         premisse *new_p = malloc(sizeof(premisse)); // Allocation de la memoire pour la nouvelle premisse
         new_p->next = NULL; // Ajout en queue
         new_p->prop = prop;
@@ -59,13 +57,13 @@ Regle add_condition(Regle r){
 /**
  * Function create the conclusion of a rule
  * @param r the rule to which the conclusion will be added
+ * @param ccl the conclusion of the rule
  * @return the rule with its conclusion
  */
-Regle create_conclusion(Regle r){
+Regle create_conclusion(Regle r, char ccl){
 
     if(r!=NULL) { // Si la regle n'est pas nulle
-        printf("Entrer la conclusion a ajouter :");
-        scanf(" %c", &r->conclusion); // Acquisition de la conclusion
+        r->conclusion = ccl;
     }
 
     return r;
@@ -160,12 +158,12 @@ Regle clear_premise_prop(char prop, Regle r){
  * @return true if premise is empty, false if not
  */
 bool is_premise_empty(Regle r){
-    printf("Entree dans teste premisse vide\n");
+
     if(r->condition->prop == '\0' && r->condition->next == NULL){ // Si la regle est vide (premisse)
-        printf("Retourne vrai\n");
+
         return true;
     }
-    printf("Retourne faux\n");
+
     return false; // Si la regle n'est pas vide
 
 }

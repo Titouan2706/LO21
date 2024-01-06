@@ -25,9 +25,9 @@ typedef rule* Regle;
 
 Regle create_empty_rule();
 
-Regle add_condition(Regle r);
+Regle add_condition(Regle r, char prop);
 
-Regle create_conclusion(Regle r);
+Regle create_conclusion(Regle r, char ccl);
 
 bool prop_belong_to_rule(char prop, Regle r);
 
