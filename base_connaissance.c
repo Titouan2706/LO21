@@ -1,3 +1,4 @@
+// FONCTIONS TESTEE ET NORMALLEMENT OK
 
 #include "base_connaissance.h"
 #include <malloc.h>
