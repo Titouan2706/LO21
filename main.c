@@ -6,6 +6,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+
+
+
 /**
  * Main function to interact with every other files in the project
  * @return 0 if everything run properly
@@ -18,17 +22,9 @@ int main(){
 
 
     // Declaration des regles et de la base de connaissance
+    printf("Initialisation des regles et de la base de connaissance\n");
         // COPY / PASTE the "Rules and Knowledge base" lines here to have pre-written rules
-        Regle R = create_empty_rule();
-        R = add_condition(R);
-        R = add_condition(R);
-        R = create_conclusion(R);
-        Regle Z = create_empty_rule();
-        Z = add_condition(Z);
-        Z = add_condition(Z);
-        Z = create_conclusion(Z);
-        base_connaissance = add_rule_to_tail(base_connaissance, R);
-        base_connaissance = add_rule_to_tail(base_connaissance, Z);
+
 
 
     // Utilisation du menu
@@ -54,7 +50,7 @@ int main(){
                 break;
 
             case 2: // Lancer le moteur d'inference
-                printf("\nLancement du moteur d'inference\n");
+                printf("\nLancement du moteur d'inference...\n");
                 base_faits = moteur_inference(base_faits, base_connaissance);
                 break;
 
