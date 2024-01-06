@@ -25,6 +25,8 @@ char access_to_head_fact(BF fact);
 
 bool is_fact_in_base(BF base_fait, char fait_verif);
 
+void print_fact_base(BF base_fait);
+
 
 
 

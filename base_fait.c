@@ -1,6 +1,7 @@
 
 #include "base_fait.h"
 #include <malloc.h>
+#include <stdio.h>
 
 
 
@@ -94,4 +95,30 @@ bool is_fact_in_base(BF base_fait, char fait_verif){
     return false;
 
 }
+
+
+/**
+ * Function displays the fact base
+ * @param base_fait the fact base to display
+ */
+void print_fact_base(BF base_fait){
+
+    if(base_fait != NULL){ // Si la base de fait n'est pas nulle
+
+        printf("-----Base de Faits-----\n");
+        BF current = base_fait; // Variable de parcours de la base
+
+        while (current != NULL){ // Tant qu'il reste des faits dans la base
+
+            printf("\t%c\n", current->Fait); // Affichage du fait
+            current = current->next; // Passage a l'iteration suivante
+
+        }
+
+    }
+
+    printf("Base de fait vide\n");
+
+}
+
 
