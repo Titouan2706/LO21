@@ -2,7 +2,6 @@
 
 #include "base_fait.h"
 #include <malloc.h>
-#include <stdio.h>
 
 /**
  * Function creates an empty fact abse
@@ -23,13 +22,10 @@ BF create_empty_fact_base(){
  * @param fact
  * @return
  */
-BF add_fact_to_tail(BF fact){
-    char newf;
-    printf("Entrer un fait a ajouter"); // Acquisition du nouveau fait
-    scanf(" %c", &newf);
+BF add_fact_to_tail(BF fact, char prop){
     BF newf_temp = (BF)malloc(sizeof(struct Base_fait)); // Creation d'un nouvel élément + allocation mémoire
     if (newf_temp != NULL) { // Si pas d'erreur d'allocation de mémoire
-        newf_temp->Fait = newf; // Initialisation du nouvel élément
+        newf_temp->Fait = prop; // Initialisation du nouvel élément
         newf_temp->next = NULL;
         if (fact->Fait == '\0') {
             return newf_temp; // Si la base initiale est vide, retourne le nouvel elementE
@@ -51,7 +47,7 @@ BF add_fact_to_tail(BF fact){
  * @return the first fact if the base isn't NULL, \0 else
  */
 char access_to_head_fact(BF fact){
-   if (fact != NULL) {
+    if (fact != NULL) {
         return fact->Fait; // Retourne le fait en tête de la base
     } else {
         return '\0'; // Caractère nul en cas de base vide

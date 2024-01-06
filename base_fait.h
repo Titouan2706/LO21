@@ -12,7 +12,7 @@ typedef struct Base_fait {
 typedef Base_fait* BF;
 
 BF create_empty_fact_base();
-BF add_fact_to_tail(BF fact);
+BF add_fact_to_tail(BF fact, char prop);
 char access_to_head_fact(BF fact);
 bool is_fact_in_base(BF base_fait, char fait_verif);
 

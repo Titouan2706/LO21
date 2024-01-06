@@ -1,10 +1,8 @@
 // TOUTES LES FONCTIONS ONT ETE TESTEE ET FONCTIONNENT
 
 #include "regle.h"
-#include <stdlib.h>
 #include <stdio.h>
-
-
+#include <malloc.h>
 
 /**
  * Function create a new rule that is empty
@@ -59,12 +57,12 @@ Regle create_conclusion(Regle r){
 }
 
 
- /**
-  * Function check if a given proposition belongs to a rule
-  * @param prop the proposition to check
-  * @param r a rule
-  * @return true if prop belongs to the rule, false if not
-  */
+/**
+ * Function check if a given proposition belongs to a rule
+ * @param prop the proposition to check
+ * @param r a rule
+ * @return true if prop belongs to the rule, false if not
+ */
 bool prop_belong_to_rule(char prop, Regle r){
     if (r == NULL) { // Verifie si la règle est vide
         return false; // Regle vide donc prop n'appartient pas à r

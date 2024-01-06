@@ -14,6 +14,7 @@ BC create_empty_base(){
         base->rule = NULL;
         base->next = NULL;
     }
+    return base;
 }
 
 
