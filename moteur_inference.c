@@ -2,46 +2,73 @@
 #include "moteur_inference.h"
 #include "stdio.h"
 
-bool are_rule_premises_satisfied(Regle rule, BF base_fait) {
-    premisse* current_premise = rule->condition;
 
-    // Iterate through all premises of the rule
-    while (current_premise != NULL) {
+
+
+
+/**
+ * Function checks if all the premise of a rule are satisfied by the fact base
+ * @param rule the rule in which to check the premise
+ * @param base_fait the fact base
+ * @return true if all premise are satisfied, false if not
+ */
+bool are_rule_premises_satisfied(Regle rule, BF base_fait) {
+
+    premisse* current_premise = rule->condition; // Variable de parcours de la regle
+
+    while (current_premise != NULL) { // Parcours de toutes les premisses de la regle
         char prop = current_premise->prop;
 
-        // Check if the premise is satisfied in the fact base
-        if (!is_fact_in_base(base_fait, prop)) {
-            return false;  // If any premise is not satisfied, return false
+        if (!is_fact_in_base(base_fait, prop)) { // Teste si les premisses sont satisfaites ou non
+            return false;  // Toutes les premisses ne sont pas satisfaites
         }
 
-        current_premise = current_premise->next;  // Move to the next premise
+        current_premise = current_premise->next;  // Iteration suivante
     }
 
-    return true;  // All premises are satisfied
+    return true;  // Toutes les premisses sont satisfaites
+
 }
 
 
+/**
+ * Function is the main function for the inference motor between a fact base and a knowledge base
+ * @param base_fait a fact base
+ * @param base_connaissance a knowledge base
+ * @return a fact base with initials facts and some other fact deduced from the knowledge base
+ */
 BF moteur_inference(BF base_fait, BC base_connaissance){
-    if (base_fait == NULL || base_connaissance == NULL) {
-        return base_fait;  // If either base is empty, no inference can be performed
+
+    if (base_fait == NULL || base_connaissance == NULL) { // Si l'une des deux bases est vide
+        return base_fait;
     }
 
-    // Iterate through each rule in the knowledge base
-    BC current_rule = base_connaissance;
-    while (current_rule != NULL) {
-        Regle rule = current_rule->rule;
+    bool newFactsAdded = true;  // Variable booléenne pour verifier si la base de fait est modifiée
 
-        // Check if all premises of the rule are satisfied in the fact base
-        if (!is_premise_empty(rule) && are_rule_premises_satisfied(rule, base_fait)) {
-            // Add the conclusion to the fact base if not already present
-            char conclusion = access_conclusion(rule);
-            if (!is_fact_in_base(base_fait, conclusion)) {
-                base_fait = add_fact_to_tail(base_fait, conclusion);
+    while (newFactsAdded) {
+
+        newFactsAdded = false;  // On reset la variable booléenne
+        BC current_rule = base_connaissance; // Variable pour iteration dans la base de connaissance
+        while (current_rule != NULL) { // Tant qu'il reste des regles dans la base de connaissance
+
+            Regle rule = current_rule->rule;
+
+            if (!is_premise_empty(rule) && are_rule_premises_satisfied(rule, base_fait)) { // Si toutes les premisses d'une regle sont satisfaites
+
+                char conclusion = access_conclusion(rule); // Recuperation de la conclusion pour l'ajout en base de fait
+
+                if (!is_fact_in_base(base_fait, conclusion)) { // Si la conclusion n'est pas deja dans la base de fait
+                    base_fait = add_fact_to_tail(base_fait, conclusion);
+                    newFactsAdded = true;  // Actualisation de la variable booléenne car modification de la base de fait
+                }
+
             }
-        }
 
-        current_rule = current_rule->next;  // Move to the next rule
+            current_rule = current_rule->next;  // Prochaine iteration
+
+        }
     }
 
-    return base_fait;  // Return the modified fact base
+    return base_fait;  // Retourne la base de fait modifiée
+
 }
