@@ -3,17 +3,26 @@
 #include <malloc.h>
 
 
+
+
+
 /**
  * Function creates an empty knowledge base
  * @return a base
  */
 BC create_empty_base(){
-    BC base = malloc(sizeof(BC));
-    if (base != NULL){
-        base->rule = NULL;
+
+    BC base = malloc(sizeof(BC)); // Allocation de la memoire pour la base de connaissance
+
+    if (base != NULL){ // Si l'allocation n'a pas echouée
+        base->rule = NULL; // Initialisation à NULL de la base de connaissance
         base->next = NULL;
     }
+
+    return base; // Retourne la base de connaissance créée
+
 }
+
 
 
 /**
@@ -23,22 +32,26 @@ BC create_empty_base(){
  * @return the modified base
  */
 BC add_rule_to_tail(BC base, Regle rule){
-    if (base != NULL){
-        BC newb = malloc(sizeof(BC));
-        newb->next = NULL;
-        newb->rule = rule;
-        if (base->next != NULL){
-            BC temp = base->next;
-            while (temp->next != NULL){
-                temp = temp->next;
-            }
-            temp->next = newb;
-        } else {
-            base->next = newb;
-        }
+
+    BC new_b = malloc(sizeof(Base_Connaissance)); // Allocation de la memoire pour une nouvelle base
+    new_b->next = NULL; // Ajout en queue
+    new_b->rule = rule; // Regle a ajouter
+
+    if (base == NULL || base->rule == NULL) { // Si base vide, retourner directement le nouvel element
+        return new_b;
     }
+
+    BC temp = base; // Base n'est pas vide, variable temporaire pour l'ajout en queue
+
+    while (temp->next != NULL){ // Atteindre la dernière regle
+        temp = temp->next;
+    }
+
+    temp->next = new_b; // Ajout en queue
     return base;
+
 }
+
 
 
 /**
@@ -47,5 +60,11 @@ BC add_rule_to_tail(BC base, Regle rule){
  * @return the first rule of the base
  */
 Regle access_to_head_base(BC base){
-    return base->rule;
+
+    if (base != NULL) { // Si la base existe
+        return base->rule;
+    } else {
+        return NULL;
+    }
+
 }
