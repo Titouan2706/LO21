@@ -7,4 +7,4 @@ include_directories(.)
 
 add_executable(Projet
         regle.c
-        regle.h base_connaissance.h base_connaissance.c main.c)
+        regle.h base_connaissance.h base_connaissance.c main.c base_fait.h base_fait.c)
